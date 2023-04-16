@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Fotoxio | Editor</title>
+    <link rel = "icon" href = "TemplateData/title_Image.png" type = "image/x-icon">
+    <link rel="stylesheet" href="TemplateData/style.css">
+
+
+  </head>
+
+
+
+
+  <body>
+
+
+    <div class="Left">
+      <img src="TemplateData/Logo1.png" alt="Italian Trulli" class="Logo">
+      <img src="TemplateData/Editor.png" alt="Italian Trulli" class="Editor">   
+      <img src="TemplateData/back.png" alt="Italian Trulli" class="Back">
+      <img src="TemplateData/Ads.jpg" alt="Italian Trulli" class="Ads1">
+    </div>
+  
+    <div class="Right">
+  
+      <div class="Upper">   
+        <img src="TemplateData/Ads2.png" alt="Italian Trulli" class="Ads2">
+      </div>
+  
+      <div class="Loading" id="Display_This">
+        <h1 id="Adnan"></h1>
+        <h2 id="Adnan">Loading...</h2>
+      </div>
+  
+  
+      <div class="Space"> 
+        <div id="unity-container" style="width: 100%;height: 87%;">
+          <canvas id="unity-canvas" width=auto height=auto></canvas>
+          <div id="unity-loading-bar">
+            <div id="unity-logo"></div>
+            <div id="unity-progress-bar-empty">
+              <div id="unity-progress-bar-full"></div>
+            </div>
+          </div>
+          <div id="unity-warning"> </div>
+        </div>
+      </div>
+  
+      
+  </div>
+  
+
+
+
+
+
+
+
+
+    <script>
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var warningBanner = document.querySelector("#unity-warning");
+      var Adn = document.querySelector("#Adnan");
+   
+      
+
+
+
+
+
+      function unityShowBanner(msg, type) {
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
+
+
+
+
+
+
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/Final.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/Final.data.unityweb",
+        frameworkUrl: buildUrl + "/Final.framework.js.unityweb",
+        codeUrl: buildUrl + "/Final.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "PixaBay Project",
+        productVersion: "1.0",
+        showBanner: unityShowBanner,
+      };
+
+
+      
+
+
+
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        container.className = "unity-mobile";
+        config.devicePixelRatio = 1;
+        unityShowBanner('WebGL builds are not supported on mobile devices.');
+      } else {
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+      }
+
+
+
+
+
+
+      loadingBar.style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+          Adn.innerHTML = ~~(progress *100 )+ " %";
+        }).then((unityInstance) => {
+
+          var ef = localStorage.getItem("saver");
+       
+
+        unityInstance.SendMessage('Enter', 'Change_Search', ef);
+
+          unityInstance.SendMessage('Enter', 'Change_Adver_Link', "https://www.woofuz.tech/");
+          unityInstance.SendMessage('Enter', 'Change_Adver', "iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAMAAAF6wyI+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAByUExURQAAAOt8L+x9MO19Mf9/P+x/Let/M+x8MO19MOx9Mul/Ku9/L+9/L+18MO19Met6Mex8MO9/L+18MPJ/M+x6Mu19Me19MO57M+x9Mex8Me18MOx9Mex8Mex8Me18MOl/Nex8Me19Me18Me18MN9/P+18MSCAFsQAAAAmdFJOUwBQt/8EHChUy3AMECDnnzT7MPcUOL/HPGzPZHzfi9sY74Djjwjz8uwDtAAAAAlwSFlzAAAXEQAAFxEByibzPwAAAXNJREFUOE/Nk9FigjAMRSMVxamIOt0QHYjz/39xSXOBVqnC285Dm15uSwgpEcU5D2SYkmKZDOU6WZGn0o5ESczDXjUZTaxT3hhlFo+ajNlLrKHAJyBiErzMwpuwBQdwWkmOiElNiggmJ5TFBZExN+d9ZlDs7nXP9N7FdDkI3a4LFOYLUsNEZaxcArI8SBH5pP123hDyh84P5kM0waphrrJwg2Sr5HGK6jr6xgIsdzCb3RISc4BmOUCkOwRwV/UHy5a1qAssHK4sI/QgKhB5FIE6/iM5kHevPVwTOmPRYiv4VO9MVe9uyu1sKTNoJishgb4/37AqjtilJMUKTx6ZLip4fKrFFI6O2VNbOJy3cCmzhw994r6Bk3PwWjNA8qvmZX++j1S2Wqv2Jrwhk/r4NXvFkcuPcAgnihANIaIa0RDqke5xmfS0dxDuRa+LXyItPu7vjPvzI7uK2b7r2OwTTmWzht7H2vcKH9fATbt2Ofi8vsVEf1cVHcUnmuc7AAAAAElFTkSuQmCC");
+
+          
+          
+          loadingBar.style.display = "none";
+
+
+
+var collection = document.getElementById("Display_This");         
+setTimeout(function() {
+  collection.style.display = "none";
+}, 2500);
+
+
+
+
+
+        }).catch((message) => {
+          alert(message);
+        });
+      };
+      document.body.appendChild(script);
+    </script>
+  </body>
+</html>

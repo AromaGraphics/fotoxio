@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Fotoxio</title>
+	<link rel="stylesheet" type="text/css" href="TemplateData/style1.css">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel = "icon" href = "TemplateData/title_Image.png" type = "image/x-icon">
+	
+</head>
+
+
+<body>
+
+	<div class="bg"></div>
+
+	<div class="Buttons">
+
+		<div class="One">
+			<button class="But" onclick="myFunction1()">Background</button>
+			<button class="But" onclick="myFunction2()">Nature</button>
+			<button class="But" onclick="myFunction3()">Wallpaper</button>
+			<button class="But" onclick="myFunction4()">Sky</button>
+			<button class="But" onclick="myFunction5()">Water</button>
+			<button class="But" onclick="myFunction6()">Cat</button>
+			<button class="But" onclick="myFunction7()">Monkey</button>
+			<button class="But" onclick="myFunction8()">Dog</button>
+			<button class="But" onclick="myFunction9()">Food</button>
+			<button class="But" onclick="myFunction10()">Car</button>
+			<button class="But" onclick="myFunction11()">Flower</button>
+		</div>
+
+		<div class="Two">
+		</div>
+	</div>	
+
+
+
+<img src="TemplateData/Logo11.png" alt="Fotoxio">
+
+
+
+<h1>Royalty-free images with advace editor</h1>
+
+<div class="topright">
+	<a href="AboutUs.html">About Us</a>
+	<a href="Terms & Condition.html">Terms & Conditions</a>
+	<a href="Contact Us.html">Contact Us</a>	
+	<a href="Privacy Policy.html">Privacy Policy</a>
+</div>
+
+ 
+<div class="box">
+	<i class="fa fa-search" aria-hidden="true"></i>
+	<input type="text" id= "filter" name= "getText"  placeholder="Search all the images">
+</div>
+
+
+<h2>Over 2.7 million+ high quality stock images with lots of effets shared by <a href="https://pixabay.com/" target="_blank" style="color: blue;">Pixabay</a> community.</h2>
+
+
+
+
+
+
+
+
+
+<script>
+
+let plzField = document.getElementById("filter");
+
+plzField.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+
+		var bar = localStorage.setItem("saver", event.target.value );
+		window.location.href= "Fotoxio.html";
+  }
+});
+
+
+function myFunction1() {
+	var bar = localStorage.setItem("saver","Background" );
+	window.location.href= "Fotoxio.html";
+}
+function myFunction2() {
+	var bar = localStorage.setItem("saver","Nature" );
+	window.location.href= "Fotoxio.html";
+}
+function myFunction3() {
+	var bar = localStorage.setItem("saver","wallpaper" );
+	window.location.href= "Fotoxio.html";
+}
+function myFunction4() {
+	var bar = localStorage.setItem("saver","Sky" );
+	window.location.href= "Fotoxio.html";
+}
+function myFunction5() {
+	var bar = localStorage.setItem("saver","Water" );
+	window.location.href= "Fotoxio.html";
+}
+function myFunction6() {
+	var bar = localStorage.setItem("saver","Cat" );
+	window.location.href= "Fotoxio.html";
+}
+function myFunction7() {
+	var bar = localStorage.setItem("saver","Monkey" );
+	window.location.href= "Fotoxio.html";
+}
+function myFunction8() {
+	var bar = localStorage.setItem("saver","Dog" );
+	window.location.href= "Fotoxio.html";
+}
+function myFunction9() {
+	var bar = localStorage.setItem("saver","Food" );
+	window.location.href= "Fotoxio.html";
+}
+function myFunction10() {
+	var bar = localStorage.setItem("saver","Car" );
+	window.location.href= "Fotoxio.html";
+}
+function myFunction11() {
+	var bar = localStorage.setItem("saver","Flower" );
+	window.location.href= "Fotoxio.html";
+}
+function myFunction12() {
+	var bar = localStorage.setItem("saver","Spring" );
+	window.location.href= "Fotoxio.html";
+}
+
+</script>
+
+
+
+
+
+</body>
+
+
+</html>
